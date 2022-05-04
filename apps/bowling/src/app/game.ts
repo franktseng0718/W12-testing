@@ -1,3 +1,4 @@
+
 // game.ts
 export class Game {
     private rolls: number[] = [];
@@ -41,4 +42,4 @@ export class Game {
       return this.rolls[frameIndex + 2];
     }
   }
-  
+ 

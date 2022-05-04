@@ -49,4 +49,5 @@ describe('Game', () => {
       game.roll(pins);
     }
   }
+
 });

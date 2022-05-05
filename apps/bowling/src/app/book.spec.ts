@@ -42,3 +42,40 @@ describe('testBasics', () => {
     expect(books.total_price).toBe(24);
   });
 });
+
+describe('testSimpleDiscounts', () => {
+  let books: Books;
+
+  beforeEach(() => {
+    books = new Books();
+  });
+  test('buy 0, 1', () => {
+    books.buy(0, 1);
+    books.buy(1, 1);
+    expect(books.total_price).toBe(8*2*0.95);
+  });
+
+  test('buy 0, 2, 4', () => {
+    books.buy(0, 1);
+    books.buy(2, 1);
+    books.buy(4, 1);
+    expect(books.total_price).toBe(8*3*0.9);
+  });
+
+  test('buy 0, 1, 2, 4', () => {
+    books.buy(0, 1);
+    books.buy(1, 1);
+    books.buy(2, 1);
+    books.buy(4, 1);
+    expect(books.total_price).toBe(8*4*0.8);
+  });
+
+  test('buy 0, 1, 2, 3, 4', () => {
+    books.buy(0, 1);
+    books.buy(1, 1);
+    books.buy(2, 1);
+    books.buy(3, 1);
+    books.buy(4, 1);
+    expect(books.total_price).toBe(8*5*0.75);
+  });
+});

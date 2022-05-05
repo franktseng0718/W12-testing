@@ -1,20 +1,44 @@
 // game.spec.ts
 import { Books } from './book';
 
-describe('Buy', () => {
-  let buy: Books;
+describe('testBasics', () => {
+  let books: Books;
 
   beforeEach(() => {
-    buy = new Books();
+    books = new Books();
   });
 
   it('should create an instance', () => {
-    expect(buy).toBeTruthy();
+    expect(books).toBeTruthy();
   });
 
-  test('buy one', () => {
-    buy(1);
-    expect(buy.price).toBe(100);
+  test('empty', () => {
+    //books.buy(1, 1);
+    expect(books .total_price).toBe(0); 
   });
 
+  test('buy 1', () => {
+    books.buy(1, 1);
+    expect(books.total_price).toBe(8);
+  });
+
+  test('buy 2', () => {
+    books.buy(2, 1);
+    expect(books.total_price).toBe(8);
+  });
+
+  test('buy 3', () => {
+    books.buy(3, 1);
+    expect(books.total_price).toBe(8);
+  });
+
+  test('buy 4', () => {
+    books.buy(4, 1);
+    expect(books.total_price).toBe(8);
+  });
+
+  test('buy 1*3', () => {
+    books.buy(1, 3);
+    expect(books.total_price).toBe(24);
+  });
 });

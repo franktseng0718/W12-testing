@@ -2,23 +2,33 @@
 //book.ts
 export class Books {
   private price: number = 0;
-  private books = new Map();
+  private max: number = 0;
+  private books:number[] = new Array(5).fill(0);
   buy(k: number, n: number) {
-    let amount;
-    if(this.books.has(k)) {
-      amount = this.books.get(k) + n;
-    } else {
-      amount = 0 + n;
-    }
-    this.books.set(k, amount);
-    this.price += 8 * n;
+    
+    this.books[k]+=n;
+    
+    //this.price += 8 * n;
   }
   get total_price() {
     let discount = 1;
-    if(this.books.size == 2) discount = 0.95;
-    if(this.books.size == 3) discount = 0.90;
-    if(this.books.size == 4) discount = 0.80; 
-    if(this.books.size == 5) discount = 0.75;
-    return this.price*discount;
+    let count:number[] = new Array();
+    this.books.sort();
+    let start = 0;
+    for (let i = 0; i < 5; i++) {
+      for(let j = start; j < this.books[i]; j++){
+        count.push(5-i);
+      }
+      start = this.books[i];
+    }
+    
+    for(let i=0;i<count.length;i++) {
+      if (count[i] == 5) this.price += 8*5*0.75;
+      else if (count[i] == 4) this.price += 8*4*0.8;
+      else if (count[i] == 3) this.price += 8*3*0.9;
+      else if (count[i] == 2) this.price += 8*2*0.95;
+      else if (count[i] == 1) this.price += 8;
+    }
+    return this.price;
   }
 }

@@ -2,7 +2,7 @@
 //book.ts
 export class Books {
   private price: number = 0;
-  private max: number = 0;
+  //private max: number = 0;
   private books:number[] = new Array(5).fill(0);
   buy(k: number, n: number) {
     

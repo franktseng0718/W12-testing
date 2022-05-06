@@ -117,4 +117,30 @@ describe('testSeveralDiscounts', () => {
   });
 });
 
+describe('testEdgeCases', () => {
+  let books: Books;
+
+  beforeEach(() => {
+    books = new Books();
+  });
+
+  test('buy 0, 0, 1, 1, 2, 2, 3, 4', () => {
+    books.buy(0, 2);
+    books.buy(1, 2);
+    books.buy(2, 2);
+    books.buy(3, 1);
+    books.buy(4, 1);
+    expect(books.total_price).toBe(2*8*4*0.8);
+  });
+
+  test('buy many', () => {
+    books.buy(0, 5);
+    books.buy(1, 5);
+    books.buy(2, 4);
+    books.buy(3, 5);
+    books.buy(4, 4);
+    expect(books.total_price).toBe(3*8*5*0.75 + 2*8*4*0.8);
+  });
+});
+
 

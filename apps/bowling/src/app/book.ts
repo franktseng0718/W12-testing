@@ -23,7 +23,11 @@ export class Books {
     }
     
     for(let i=0;i<count.length;i++) {
-      if (count[i] == 5) this.price += 8*5*0.75;
+      if (i != count.length && count[i] == 5 && count[i+1] == 3){
+        this.price += 2 * 8 * 4 * 0.8;
+        i++;
+      } 
+      else if (count[i] == 5) this.price += 8*5*0.75;
       else if (count[i] == 4) this.price += 8*4*0.8;
       else if (count[i] == 3) this.price += 8*3*0.9;
       else if (count[i] == 2) this.price += 8*2*0.95;
